@@ -24,11 +24,21 @@ export class Database {
 		}
 	}
 
-	getReport(city: string): WeatherReport | undefined {
+	generateReportsIfNecessary() {
 		if (new Date().getTime() - this.lastUpdate.getTime() > 30000) {
 			this.generateReports();
 		}
+	}
+
+	getReport(city: string): WeatherReport | undefined {
+		this.generateReportsIfNecessary();
 
 		return this.reports.get(city);
+	}
+
+	getLastUpdate(): Date {
+		this.generateReportsIfNecessary();
+
+		return this.lastUpdate;
 	}
 }

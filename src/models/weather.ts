@@ -1,4 +1,5 @@
 import { WeatherCondition } from "./weatherConditions";
+import { createHash } from 'crypto';
 
 export class WeatherReport {
 	constructor(
@@ -16,5 +17,12 @@ export class WeatherReport {
 			Math.trunc(Math.random() * 40 * 100) / 100,
 			Math.trunc(Math.random() * 100 * 100) / 100
 		);
+	}
+
+	getChecksum() {
+		// Weak function, but we don't care about security here since it's just for caching
+		return createHash('md5')
+			.update(this.city + this.condition + this.temperature + this.windSpeed)
+			.digest('hex');
 	}
 }
