@@ -1,16 +1,9 @@
-enum SerializationFormat {
-	Json,
-	Xml,
-	Plain
-}
+import { SerializationFormat } from "../models/serializationFormat";
 
-function generateError(message: string, format: SerializationFormat): string {
-	return generate({ error: message }, format);
-}
-
-function generate(data: any, format: SerializationFormat): string {
+export function serialize(data: any, format: SerializationFormat): string {
 	switch (format) {
 		case SerializationFormat.Json:
+		case SerializationFormat.ProblemJson:
 			return JSON.stringify(data);
 		case SerializationFormat.Xml:
 			const serializer = new XMLSerializer();

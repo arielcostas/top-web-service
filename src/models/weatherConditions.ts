@@ -1,4 +1,4 @@
-enum WeatherCondition {
+export enum WeatherCondition {
 	Sunny = "Sunny",
 	Cloudy = "Cloudy",
 	Rainy = "Rainy",

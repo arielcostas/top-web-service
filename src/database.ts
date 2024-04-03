@@ -1,21 +1,24 @@
+import { Cities } from "./models/cities";
+import { WeatherReport } from "./models/weather";
+
 /**
  * A fake database that will generate WeatherReport
  * every time it is queried and over 30 seconds have passed since the last query.
  * 
  * @see WeatherReport
  */
-class Database {
-	private lastUpdate: Date;
+export class Database {
+	private lastUpdate: Date = new Date();
 	private reports: Map<string, WeatherReport> = new Map();
 
 	constructor() {
-		this.lastUpdate = new Date();
 		this.generateReports();
 	}
 
 	generateReports() {
 		this.lastUpdate = new Date();
-		for (const city in Object.entries(cities)) {
+		let city: keyof typeof Cities;
+		for (city in Cities) {
 			const report = WeatherReport.random(city);
 			this.reports.set(city, report);
 		}

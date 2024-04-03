@@ -1,28 +1,20 @@
 import express from 'express';
-import { Request, Response } from 'express';
+import router from './handler';
 
 const app = express();
 
 app.set('etag', false);
 app.set('x-powered-by', false);
+app.set('cache-control', 'no-store');
 
-const database = new Database();
+app.use(express.json());
+app.use((req, res, next) => {
+	res.setHeader('Connection', 'close');
 
-app.get('/weather/{city}', (req: Request, res: Response) => {
-	const city = req.params.city;
-	const responseType = req.header('Accept')?.indexOf('application/json') !== -1 ? SerializationFormat.Json : SerializationFormat.Plain;
-
-	const report = database.getReport(city);
-
-	if (report === undefined) {
-		res.status(404).write();
-		res.end();
-		return;
-	}
-
-	res.status(200).write("Weather");
-	res.end();
+	next();
+	console.log("[%s] %s %s - %d", new Date().toISOString(), req.method, req.url, res.statusCode);
 });
+app.use(router);
 
 const port = process.env.PORT || 3000;
 

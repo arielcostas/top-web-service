@@ -1,4 +1,6 @@
-class WeatherReport {
+import { WeatherCondition } from "./weatherConditions";
+
+export class WeatherReport {
 	constructor(
 		public city: string,
 		public condition: WeatherCondition,
@@ -11,8 +13,8 @@ class WeatherReport {
 		return new WeatherReport(
 			city,
 			Object.values(WeatherCondition)[Math.floor(Math.random() * Object.values(WeatherCondition).length)],
-			Math.random() * 40,
-			Math.random() * 100
+			Math.trunc(Math.random() * 40 * 100) / 100,
+			Math.trunc(Math.random() * 100 * 100) / 100
 		);
 	}
 }
