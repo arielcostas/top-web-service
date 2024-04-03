@@ -2,22 +2,28 @@
   "name": "top-web-service",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.ts",
   "scripts": {
     "serve": "ts-node src/server.ts",
     "clean": "rm -r dist",
     "build": "clean && tsc"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "private": true,
+  "author": {
+    "name": "Ariel Costas Guerrero",
+    "url": "https://costas.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arielcostas/top-web-server"
+  },
+  "license": "BSD-3-Clause",
   "dependencies": {
     "express": "^4.19.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.2",
-    "nodemon": "^3.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3"
   }
