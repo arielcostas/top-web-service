@@ -37,18 +37,18 @@ You can
 	- [X] The `If-Modified-Since` header is used to check if the client has the latest version
 	- [X] If the client has the latest version, a `304 Not Modified` response is returned instead of the report
 - [X] If a city doesn't exist, a `404 Not Found` response is returned
-- [ ] Format support
-	- [ ] The response format can be specified using the `Accept` header
-	- [ ] A `406 Not Acceptable` response is returned if the requested format is not supported
+- [X] Format support
+	- [X] The response format can be specified using the `Accept` header
+	- [X] A `406 Not Acceptable` response is returned if the requested format is not supported
 	- [X] A JSON response is returned when `application/json` is requested
 	- [X] A `application/problem+json` response is returned if there's an error and JSON is requested, as per [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457)
 	- [ ] A XML response is returned when `application/xml` is requested
 	- [X] A plain text response is returned when `text/plain` is requested
 - [ ] Rate limiting
 	- [ ] A `429 Too Many Requests` response is returned if the client has exceeded the rate limit
-	- [ ] The rate limit is 5 requests per minute
+	- [ ] The rate limit is 5 requests per minute with a burst of 10 requests
+	- [ ] The rate limit implements the [token bucket algorithm](https://en.wikipedia.org/wiki/Token_bucket)
 	- [ ] The rate limit is per client IP
-	- [ ] The rate limit is reset every minute
 - [ ] Language variation
 	- [ ] The response language can be specified using the `Accept-Language` header
 	- [ ] English, Spanish, Catalan and Galician are supported

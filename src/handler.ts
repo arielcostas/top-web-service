@@ -12,6 +12,20 @@ router.get('/weather/:city', (req: Request, res: Response) => {
     const city = req.params.city;
     const responseType = parseAcceptHeader(req.headers['accept'] || '');
 
+    if (responseType === undefined) {
+        const err = new AppError(ErrorType.InvalidFormat, 'Incompatible Accept header format(s)', {
+            header: req.headers['accept'],
+            acceptedFormats: Object
+                .values(SerializationFormat)
+                .filter(v => v != SerializationFormat.ProblemJson)
+        });
+
+        res.status(406);
+
+        sendErrorResponse(res, SerializationFormat.Json, err);
+        return;
+    }
+
     const ifModifiedSince = req.headers['if-modified-since'];
     const reportDate = database.getLastUpdate();
 

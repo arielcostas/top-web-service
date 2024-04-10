@@ -12,4 +12,5 @@ export class AppError {
 
 export enum ErrorType {
     CityNotFound = "tag:costas.dev:top-web-service:errors#city-not-found",
+    InvalidFormat = "tag:costas.dev:top-web-service:errors#invalid-format",
 }

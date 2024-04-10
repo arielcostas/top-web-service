@@ -6,8 +6,6 @@ export function serialize(data: any, format: SerializationFormat): string {
 		case SerializationFormat.ProblemJson:
 			return JSON.stringify(data);
 		case SerializationFormat.Xml:
-			const serializer = new XMLSerializer();
-			return serializer.serializeToString(data);
 		case SerializationFormat.Plain:
 			return Object.entries(data).map(([key, value]) => `${key}: ${value}`).join('\n');
 	}
